@@ -1,0 +1,32 @@
+ACS PUMS housing audit: independently calculated results, November 18, 2026.
+These are analyst-generated estimates; geographic uncertainty is not included in sampling intervals.
+Main geography: majority-in-five-county PUMAs in 2006, exact five-county union in 2024.
+Main estimator: WGTP-weighted 12*GRNTP/HINCP > 0.50 among positive-income renters; include no-cash-rent as zero.
+nominal, 2006: income $35000.00 to <$50000.00; severe 9.4205%; unweighted n=669; weighted denominator=78722; weighted numerator=7416; 90% CI 7.3424% to 11.4986%.
+nominal, 2024: income $35000.00 to <$50000.00; severe 50.9010%; unweighted n=525; weighted denominator=65704; weighted numerator=33444; 90% CI 46.7930% to 55.0091%.
+real_2006_anchor, 2006: income $35000.00 to <$50000.00; severe 9.4205%; unweighted n=669; weighted denominator=78722; weighted numerator=7416; 90% CI 7.3424% to 11.4986%.
+real_2006_anchor, 2024: income $54459.90 to <$77799.85; severe 21.5413%; unweighted n=739; weighted denominator=88690; weighted numerator=19105; 90% CI 19.0583% to 24.0244%.
+real_2024_anchor, 2006: income $22493.62 to <$32133.74; severe 32.5587%; unweighted n=581; weighted denominator=68725; weighted numerator=22376; 90% CI 29.4858% to 35.6317%.
+real_2024_anchor, 2024: income $35000.00 to <$50000.00; severe 50.9010%; unweighted n=525; weighted denominator=65704; weighted numerator=33444; 90% CI 46.7930% to 55.0091%.
+Inflation comparison: national CPI-U annual average is 201.6 in 2006 and 313.689 in 2024; factor 1.5559970238.
+2006-anchored comparison: nominal increase 41.4805 percentage points; real increase 12.1208 percentage points; 70.7795% of the nominal increase disappears; nominal increase is 3.4223 times real increase.
+Broader 2006, real_2006_anchor, below_35k: 47.5816%; unweighted n=2359; weighted households=271315.
+Broader 2006, real_2006_anchor, 35k_50k: 9.4205%; unweighted n=669; weighted households=78722.
+Broader 2006, real_2006_anchor, 50k_75k: 1.2373%; unweighted n=828; weighted households=97956.
+Broader 2006, real_2006_anchor, 75k_plus: 0.2635%; unweighted n=946; weighted households=109304.
+Broader 2006, all_incomes, valid_grpip_gt30: 50.4042%; unweighted n=4625; weighted households=539792.
+Broader 2006, all_incomes, valid_grpip_gt50: 25.2549%; unweighted n=4625; weighted households=539792.
+Broader 2024, real_2006_anchor, below_35k: 54.5914%; unweighted n=2235; weighted households=268251.
+Broader 2024, real_2006_anchor, 35k_50k: 21.5413%; unweighted n=739; weighted households=88690.
+Broader 2024, real_2006_anchor, 50k_75k: 3.6255%; unweighted n=1023; weighted households=123348.
+Broader 2024, real_2006_anchor, 75k_plus: 0.6124%; unweighted n=2200; weighted households=227643.
+Broader 2024, all_incomes, valid_grpip_gt30: 49.2206%; unweighted n=6006; weighted households=684532.
+Broader 2024, all_incomes, valid_grpip_gt50: 24.8459%; unweighted n=6006; weighted households=684532.
+Geography check fractional, 2006, constant-2006-income bracket: severe 9.5303%.
+Geography check fractional, 2024, constant-2006-income bracket: severe 21.5413%.
+Geography check inside, 2006, constant-2006-income bracket: severe 9.9401%.
+Geography check inside, 2024, constant-2006-income bracket: severe 21.5413%.
+Geography check touching, 2006, constant-2006-income bracket: severe 8.9820%.
+Geography check touching, 2024, constant-2006-income bracket: severe 21.5413%.
+Geography check essex_suffolk, 2006, constant-2006-income bracket: severe 6.6274%.
+Geography check essex_suffolk, 2024, constant-2006-income bracket: severe 17.6829%.

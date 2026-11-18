@@ -1,0 +1,163 @@
+{
+  "cpi": {
+    "2006": 201.6,
+    "2024": 313.689
+  },
+  "inflation_factor": 1.555997023809524,
+  "main_comparisons": [
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "nominal",
+      "year": 2006,
+      "lower": 35000.0,
+      "upper_exclusive": 50000.0,
+      "n": 669,
+      "weighted_households": 78722.0,
+      "weighted_severe": 7416.0,
+      "percent": 9.420492365539493,
+      "se_pp": 1.2632613694460748,
+      "ci90_low": 7.342427412800701,
+      "ci90_high": 11.498557318278285,
+      "change_pp": null,
+      "change_se_pp": null
+    },
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "nominal",
+      "year": 2024,
+      "lower": 35000.0,
+      "upper_exclusive": 50000.0,
+      "n": 525,
+      "weighted_households": 65704.0,
+      "weighted_severe": 33444.0,
+      "percent": 50.90101059296238,
+      "se_pp": 2.49729987432798,
+      "ci90_low": 46.79295229969285,
+      "ci90_high": 55.0090688862319,
+      "change_pp": 41.480518227422884,
+      "change_se_pp": 2.798631084986608
+    },
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "real_2006_anchor",
+      "year": 2006,
+      "lower": 35000.0,
+      "upper_exclusive": 50000.0,
+      "n": 669,
+      "weighted_households": 78722.0,
+      "weighted_severe": 7416.0,
+      "percent": 9.420492365539493,
+      "se_pp": 1.2632613694460748,
+      "ci90_low": 7.342427412800701,
+      "ci90_high": 11.498557318278285,
+      "change_pp": null,
+      "change_se_pp": null
+    },
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "real_2006_anchor",
+      "year": 2024,
+      "lower": 54459.895833333336,
+      "upper_exclusive": 77799.8511904762,
+      "n": 739,
+      "weighted_households": 88690.0,
+      "weighted_severe": 19105.0,
+      "percent": 21.541323711805163,
+      "se_pp": 1.5094577590222746,
+      "ci90_low": 19.05826569821352,
+      "ci90_high": 24.024381725396804,
+      "change_pp": 12.12083134626567,
+      "change_se_pp": 1.968322131615483
+    },
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "real_2024_anchor",
+      "year": 2006,
+      "lower": 22493.61628874458,
+      "upper_exclusive": 32133.737555349402,
+      "n": 581,
+      "weighted_households": 68725.0,
+      "weighted_severe": 22376.0,
+      "percent": 32.55874863586759,
+      "se_pp": 1.8680536852605831,
+      "ci90_low": 29.48580032361393,
+      "ci90_high": 35.63169694812125,
+      "change_pp": null,
+      "change_se_pp": null
+    },
+    {
+      "geography": "majority",
+      "income": "raw",
+      "burden": "ratio",
+      "basis": "real_2024_anchor",
+      "year": 2024,
+      "lower": 35000.0,
+      "upper_exclusive": 50000.0,
+      "n": 525,
+      "weighted_households": 65704.0,
+      "weighted_severe": 33444.0,
+      "percent": 50.90101059296238,
+      "se_pp": 2.49729987432798,
+      "ci90_low": 46.79295229969285,
+      "ci90_high": 55.0090688862319,
+      "change_pp": 18.34226195709479,
+      "change_se_pp": 3.1186745956149693
+    }
+  ],
+  "download_manifest": [
+    {
+      "file": "acs2006_hma.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2006/csv_hma.zip",
+      "bytes": 4748260,
+      "sha256": "01556333d9fc44cfa6e41a2ebd86a5b42162e8b6b568ff374b12db489f2160d7"
+    },
+    {
+      "file": "acs2024_hma.zip",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2024/1-Year/csv_hma.zip",
+      "bytes": 5416503,
+      "sha256": "c863f3bf6cb4f6941af0157d7703e9ca6c706a5eed8955168c1746375d514c49"
+    },
+    {
+      "file": "geo2000.html",
+      "url": "https://usa.ipums.org/usa/volii/PUMA_composition_MA.shtml",
+      "bytes": 209014,
+      "sha256": "39a4652752b0692bfbec8df54035fcd14a1785160375c515a99ddf864c32c63b"
+    },
+    {
+      "file": "geo2020.txt",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/puma520/tab20_puma520_cousub20_natl.txt",
+      "bytes": 7222011,
+      "sha256": "25d0bf84dedf5de90aa5399684b4136249ae6769a2436930be150c7f1e15e1cd"
+    },
+    {
+      "file": "cpi2006.json",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2006&endyear=2006&annualaverage=true",
+      "bytes": 1243,
+      "sha256": "9ccb16f6fe669d19b88558e3bef3ef7037fd6512f38e89e47e0bfdf2d4203624"
+    },
+    {
+      "file": "cpi2024.json",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2024&endyear=2024&annualaverage=true",
+      "bytes": 1269,
+      "sha256": "8983d72242d9ea9ddcc7ff4fc04ec08a450dcb718f5ab9a9fbcf261515372c9a"
+    },
+    {
+      "url": "https://www.bls.gov/cpi/tables/supplemental-files/historical-cpi-u-202412.pdf",
+      "annual_CPI_U": {
+        "2006": 201.6,
+        "2024": 313.689
+      },
+      "note": "Published annual averages, not December-to-December indices."
+    }
+  ]
+}

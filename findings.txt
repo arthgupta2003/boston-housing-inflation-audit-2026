@@ -1,0 +1,209 @@
+Does inflation exaggerate the Greater Boston renter statistic?
+Analysis date: November 18, 2026
+
+RESULT
+
+Yes, if it is read as a comparison of households at the same real income.
+Using downloaded ACS household records, nominal $35,000-$49,999 incomes
+produce 9.4% severely burdened in 2006 and 50.9% in 2024,
+rounding to the report's 9% and 51%. Adjusting the 2024 bracket to
+$54,459.90-$77,799.85 produces 21.5%, an increase of 12.1 percentage
+points rather than 41.5. The nominal increase is 3.42 times as large;
+70.8% of that increase disappears when this bracket is held constant
+in purchasing power. This is a comparison of estimates, not a causal
+attribution of a share of the housing crisis to inflation.
+
+The same-real-income severe burden rate still more than doubles
+(2.29 times its 2006 level). Inflation does not erase the problem.
+These are repeated cross-sections of residents, not the same households.
+
+MAIN TABLE
+
+Comparison                   2006 nominal income     2024 nominal income     Severe burden
+Fixed nominal brackets       $35,000-$49,999         $35,000-$49,999         9.4% -> 50.9%
+Constant 2006 purchasing power $35,000-$49,999        $54,460-<$77,800        9.4% -> 21.5%
+Constant 2024 purchasing power $22,494-<$32,134       $35,000-$49,999         32.6% -> 50.9%
+
+The two real comparisons concern different parts of the income distribution.
+There is no unique inflation-explained percentage independent of the anchor.
+The first real comparison answers the user's proposed 2006-income question;
+the second shows the history of households at today's $35k-$50k purchasing power.
+Brackets are lower-inclusive and upper-exclusive, using unrounded CPI thresholds.
+
+Sample and uncertainty (2006 / nominal 2024 / real-bracket 2024):
+Unweighted households: 669 / 525 / 739.
+Weighted households: 78,722 / 65,704 / 88,690.
+Severely burdened weighted households: 7,416 / 33,444 / 19,105.
+90% intervals: 7.3-11.5% / 46.8-55.0% / 19.1-24.0%.
+Real-bracket change: 12.1 percentage points; approximate 90% interval
+8.9 to 15.4, conditional on geography and independent annual estimates.
+
+REPORT METHODS AND INFLATION CHECK
+
+Report: Boston Foundation/Boston Indicators, 2026 Greater Boston Housing
+Report Card, p48, chart on severe renter cost burdens. It identifies ACS
+2006-2024 1-year estimates through IPUMS; 2020 is omitted due to experimental
+weights. The measure is housing spending above half of household income.
+Page 12's population-chart subtitle explicitly defines Greater Boston as
+Essex, Middlesex, Norfolk, Suffolk, and Plymouth counties, Massachusetts.
+This differs from the Boston-Cambridge-Newton MA-NH MSA. Some other report
+figures use that MSA; it must not automatically be substituted here.
+
+I searched the full PDF text, read the relevant rental-housing pages and
+endnotes, inspected the rendered p48, and checked the report landing page
+and IPUMS monetary-variable documentation. No separate detailed p48
+methodology, analysis code, exact PUMA selection, or explicit bracket
+inflation base year was located. Chart notes alone do not document those
+choices. The geographic target above is the report's five-county definition;
+the p48 subtitle itself simply says Greater Boston.
+
+The report DOES discuss inflation elsewhere: p41 uses national CPI-U to
+adjust the separate Zillow asking-rent series. That does not establish that
+p48's income brackets were adjusted. IPUMS HHINCOME and RENTGRS are in
+contemporary dollars unless the user specifically requests an adjustment;
+IPUMS attribution does not mean automatic inflation adjustment.
+
+The numerical check strongly supports nominal brackets on p48: the raw
+nominal calculation reproduces both rounded endpoints, whereas a fixed
+2006 real-income bracket yields about 22% in 2024, and a fixed 2024
+real-income bracket yields about 33% in 2006. Neither produces 9% -> 51%.
+Thus the evidence indicates that this particular chart leaves its income
+brackets nominal. This is an inference from documentation and replication,
+not confirmation from the report authors or their original extract settings.
+
+VARIABLES AND ESTIMATOR
+
+Use one row per occupied household from the housing file, TEN in (3,4),
+NP > 0 and WGTP > 0. TEN=3 is cash rent; TEN=4 is no cash rent.
+Exclude group quarters and vacancies. HINCP is total household money income,
+not personal income or family income. GRNTP is monthly gross rent including
+utilities/fuels, not contract rent RNTP alone. No-cash-rent households are
+retained as having zero rent; positive-income target brackets avoid the
+undefined-ratio problem for zero/negative incomes.
+
+Main definition: severe = (12 * GRNTP / HINCP > 0.50), with strict inequality.
+Use WGTP, the housing/household survey weight, for both numerator and
+denominator. A no-cash-rent household is classified as not burdened.
+Main income brackets use raw HINCP, consistent with default IPUMS practice.
+
+Inflation: BLS national CPI-U all items, U.S. city average, not seasonally
+adjusted, annual averages 201.6 (2006) and 313.689 (2024).
+Factor = 313.689 / 201.6 = 1.5559970238, a 55.6% rise.
+Do not multiply income alone when defining a cost ratio in constant dollars:
+either leave both rent and income in their own-year units or deflate both.
+Here inflation changes which income bracket is selected, not its cost ratio.
+
+Robustness: Census GRPIP is a rounded gross-rent percentage. Using GRPIP>50
+instead of the computed ratio yields 9.1% -> 50.8% nominal and 9.1% -> 20.9%
+real. Small threshold differences arise from rounding and Census treatment.
+Applying the within-survey-year ADJUST (2006) / ADJINC (2024) income factors
+and recomputing the ratio gives 9.2% -> 51.1% nominal and 9.2% -> 20.9% real.
+Those small factors align rolling income reference periods; they are NOT
+the 2006-to-2024 inflation correction. IPUMS advises against relying on a
+single uniform within-year factor and does not preapply it by default.
+Monthly rent is interview-period spending; IPUMS says it needs no such
+within-year adjustment. Both sensitivity families are in comparison.csv.
+
+GEOGRAPHY: WHAT CAN AND CANNOT BE REPRODUCED
+
+2024 uses 2020 PUMAs. Census PUMA-to-county-subdivision relationships show
+that the five counties are an exact union of 35 Massachusetts PUMAs.
+
+2006 uses 2000 PUMAs. Exact five-county assignment is impossible from the
+public housing file: PUMAs 00400, 02400, 03600 cross into Worcester County;
+04100 crosses into Bristol County. The main approximation includes these
+whole majority-in-region PUMAs, plus all wholly in-region PUMAs. It excludes
+00300 and 04500, which are mostly outside but contain some target towns.
+These decisions are made from geography, not selected to optimize a rate.
+At Census-2000 populations the approximation includes 117,870 people
+outside the target and omits 18,817 inside; these are geographic population
+figures, NOT estimated 2006 renter counts. geography.csv records every code.
+
+Alternative 2006 baseline rates for the target income bracket:
+- Majority-PUMA approximation: 9.4%.
+- Fractional population allocation: 9.5%, assuming each PUMA's renter-income
+  burden distribution is spatially uniform within that PUMA; this is a
+  model-based approximation, not identification of individual households.
+- Only wholly in-region PUMAs: 9.9% (omits parts of target counties).
+- All PUMAs touching target counties: 9.0% (adds substantial outside areas).
+The latter alternatives change the area; they are specification checks,
+not confidence bounds on an exactly identified five-county estimate.
+
+A fully identifiable, fixed two-county check (Essex plus Suffolk) yields
+6.6% -> 48.5% nominal but 6.6% -> 17.7% real. It covers a different region,
+but confirms the main finding without any cross-boundary allocation.
+
+BROADER CONTEXT
+
+All figures below use gross-rent/income >50%, positive-income renters,
+the majority-PUMA approximation, and brackets fixed in 2006 purchasing power.
+
+Income in 2006 dollars        2006    2024    Change (percentage points)
+$0 to <$35,000                47.6%   54.6%    +7.0
+$35,000 to <$50,000            9.4%   21.5%   +12.1
+$50,000 to <$75,000            1.2%    3.6%    +2.4
+$75,000 and above              0.3%    0.6%    +0.3
+
+There is real deterioration concentrated below the upper income group,
+and the highlighted bracket has the largest increase among these broad
+real-income groups. Calling the whole result fabricated would be wrong.
+
+However, using all renters with a valid Census GRPIP (excluding no-cash rent
+and undefined percentages), overall severe burden is 25.3% -> 24.8%, while
+burden above 30% is 50.4% -> 49.2%. Other denominator choices are supplied
+in broader.csv and also show no large aggregate increase. Aggregate trends
+combine affordability at each income with changes in the renter income mix;
+they cannot show how much the same households' situations improved or
+worsened. They do not disprove worsening conditional affordability or prove
+that displaced households were replaced by richer ones.
+
+CONCLUSION
+
+The published nominal endpoints are numerically plausible and reproducible
+to rounding under a disclosed public-data approximation. They are misleading
+as an apples-to-apples measure of changes at the same standard of living.
+For the 2006 $35k-$50k income group, the comparable rate rises about 12
+percentage points, not 42. The report acknowledges inflation for other
+measures and shows broad income-group context; there is no basis here to
+assert deliberate cherry-picking or infer the authors' intent.
+
+LIMITATIONS
+
+No original author code or IPUMS extract was available. The 2006 geographic
+mismatch prevents an exact five-county replication; a rounded match does
+not identify a unique author workflow. Sampling intervals omit geographic
+error, misreporting and CPI uncertainty. ACS pretax cash income omits some
+noncash supports; reported rent/subsidy treatment can affect measured burden.
+No subsidy correction is attempted. Household sizes, composition, quality,
+location within the region, migration and tenure selection can change over
+time. This is not a causal rent index or a longitudinal household study.
+No preregistration was written before exploratory calculations: direct
+ratios, GRPIP, income factors, denominators and geography variants were
+examined, and all specified variants are retained in the outputs.
+
+SOURCES
+
+Report p12, pp41-49 and endnotes:
+https://www.tbf.org/-/media/tbf/reports-and-covers/2026/gbhrc-2026-report.pdf
+2006 Massachusetts ACS 1-year household file:
+https://www2.census.gov/programs-surveys/acs/data/pums/2006/csv_hma.zip
+2024 Massachusetts ACS 1-year household file:
+https://www2.census.gov/programs-surveys/acs/data/pums/2024/1-Year/csv_hma.zip
+2000 Massachusetts PUMA composition (IPUMS public geography documentation):
+https://usa.ipums.org/usa/volii/PUMA_composition_MA.shtml
+2020 PUMA/county-subdivision relationship (Census):
+https://www2.census.gov/geo/docs/maps-data/data/rel2020/puma520/tab20_puma520_cousub20_natl.txt
+Census 2006 dictionary:
+https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMSDataDict06.pdf
+Census 2024 dictionary:
+https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2024.txt
+IPUMS household income:
+https://usa.ipums.org/usa-action/variables/HHINCOME
+IPUMS gross rent:
+https://usa.ipums.org/usa-action/variables/RENTGRS
+IPUMS within-year adjustment note:
+https://usa.ipums.org/usa/acsincadj.shtml
+BLS annual CPI-U table (p5) and API series CUUR0000SA0 annual period M13:
+https://www.bls.gov/cpi/tables/supplemental-files/historical-cpi-u-202412.pdf
+https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2006&endyear=2006&annualaverage=true
+https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2024&endyear=2024&annualaverage=true
