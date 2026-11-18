@@ -1,0 +1,442 @@
+{
+  "page": {
+    "question": "Does inflation exaggerate Greater Boston’s renter affordability statistic?",
+    "slug": "boston-renter-affordability-inflation",
+    "topic": "Housing and affordability",
+    "short_answer": "Yes: severe burden rises from 9.4% to 21.5% at comparable purchasing power, versus 50.9% using fixed dollar brackets; the regional match is approximate. [[audit#nominal]] [[audit#real]]",
+    "background": "The Greater Boston Housing Report Card’s much-shared comparison holds the dollar bracket fixed. This audit downloads Census household records and compares fixed-dollar and fixed-purchasing-power estimates, while checking inflation documentation and the geographic definition. It tests a particular conditional statistic, rather than measuring the same households over time.",
+    "method": {
+      "searches": [
+        {
+          "where": "Boston Foundation report PDF, source notes, endnotes and landing page",
+          "query": "Methodology, Greater Boston geography, income brackets, ACS/IPUMS and inflation",
+          "date": "2026-11-18"
+        },
+        {
+          "where": "Census PUMS downloads and dictionaries; Census and IPUMS geography documentation",
+          "query": "Massachusetts housing files and PUMA composition for the baseline and endpoint years",
+          "date": "2026-11-18"
+        },
+        {
+          "where": "IPUMS household-income documentation and BLS public API",
+          "query": "Contemporary dollars, within-year adjustment and national CPI-U annual averages",
+          "date": "2026-11-18"
+        }
+      ],
+      "inclusion": [
+        "Original report and primary-source microdata/documentation directly bearing on its income-bracket comparison.",
+        "All implemented nominal, real-income, geography, income-adjustment and denominator variants retained; reproducibility files linked in the original-analysis source."
+      ],
+      "excluded": [
+        {
+          "source": "Press summaries of the report",
+          "reason": "Used only to establish the circulated interpretation; all quantitative conclusions are checked against the original report and downloaded data."
+        },
+        {
+          "source": "Zillow asking-rent price series as a substitute for household burden",
+          "reason": "Different population and metric; relevant to the report’s inflation discussion but cannot reproduce income-specific household burden."
+        }
+      ]
+    },
+    "groups": [
+      {
+        "name": "The income comparison",
+        "claim_ids": [
+          "HB-1",
+          "HB-2",
+          "HB-3"
+        ]
+      },
+      {
+        "name": "Geography and broader context",
+        "claim_ids": [
+          "HB-4",
+          "HB-5"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "HB-1",
+        "title": "Nominal brackets reproduce the published endpoints",
+        "key_result": "Severe burden: 9.4% to 50.9% in fixed dollar brackets [[audit#nominal]]",
+        "headline": "The downloaded household records give 9.4% in 2006 and 50.9% in 2024, rounding to the published endpoints. [[audit#nominal]] [[report#published]]",
+        "certainty": "moderate",
+        "downgraded_for": [
+          "indirectness"
+        ],
+        "rationale": "The main estimator weights annual gross rent above half of household income by household survey weights, including positive-income no-cash-rent households as unburdened. The earlier geography is approximate, and matching rounded endpoints does not recover the authors’ exact workflow.",
+        "falsified_if": "The same disclosed microdata specification fails to reproduce the audit’s rates, or the published endpoints differ.",
+        "alternatives_ruled_out": [],
+        "evidence": [
+          {
+            "source": "audit",
+            "results": [
+              "nominal",
+              "geography"
+            ],
+            "edge": "supports",
+            "how_tested": "Census household-file analysis with majority-in-region earlier PUMAs and an exact later county union; all implemented sensitivity variants are published."
+          },
+          {
+            "source": "report",
+            "results": [
+              "published"
+            ],
+            "edge": "supports",
+            "how_tested": "Read the original report’s chart discussion and source note, then compare the published endpoints with the independent calculation."
+          }
+        ]
+      },
+      {
+        "id": "HB-2",
+        "title": "Constant purchasing power shows a smaller increase",
+        "key_result": "Real-income severe burden: 9.4% to 21.5% [[audit#real]]",
+        "headline": "Holding baseline purchasing power fixed gives 9.4% to 21.5%, an increase of 12.1 percentage points; fixed dollars give an increase of 41.5 points. [[audit#real]] [[audit#difference]]",
+        "certainty": "moderate",
+        "downgraded_for": [
+          "indirectness"
+        ],
+        "rationale": "The later income bracket is $54,460 to below $77,800 instead of $35,000 to below $50,000. About 70.8% of the nominal increase disappears under this particular baseline-income comparison; this is descriptive, not a causal inflation attribution. [[audit#bracket]] [[audit#difference]]",
+        "falsified_if": "Independent rerunning of the bracket selection or a correction to the CPI inputs eliminates the large nominal-versus-real difference.",
+        "alternatives_ruled_out": [],
+        "evidence": [
+          {
+            "source": "audit",
+            "results": [
+              "real",
+              "difference",
+              "bracket",
+              "within-year"
+            ],
+            "edge": "supports",
+            "how_tested": "Keep the severe-rent-burden outcome definition fixed and change only the income-bracket selection by the annual CPI ratio; also test the distinct within-year income factors."
+          },
+          {
+            "source": "cpi06",
+            "results": [
+              "annual"
+            ],
+            "edge": "supports",
+            "how_tested": "Use the official national annual-average all-items CPI for the baseline."
+          },
+          {
+            "source": "cpi24",
+            "results": [
+              "annual"
+            ],
+            "edge": "supports",
+            "how_tested": "Use the corresponding endpoint annual-average index to calculate equivalent purchasing power."
+          }
+        ]
+      },
+      {
+        "id": "HB-3",
+        "title": "This chart appears to use nominal incomes",
+        "key_result": "Nominal replication fits; real-income comparisons do not [[audit#nominal]] [[audit#real]]",
+        "headline": "IPUMS income values use contemporary dollars unless users adjust them. The nominal calculation matches the report’s endpoints, while the baseline-real-income calculation does not. [[ipums#units]] [[audit#nominal]] [[audit#real]]",
+        "certainty": "moderate",
+        "downgraded_for": [
+          "indirectness"
+        ],
+        "rationale": "The report discusses CPI adjustment of a separate rent-price series, but that is not documentation of inflation-adjusted income bands for this chart. The chart-specific conclusion is an inference from its notes and the endpoint replication; no original code or author confirmation was available.",
+        "falsified_if": "The authors supply code or extract metadata showing a coherent common-dollar adjustment that still reproduces the published pair for a comparable population.",
+        "alternatives_ruled_out": [],
+        "evidence": [
+          {
+            "source": "report",
+            "results": [
+              "published"
+            ],
+            "edge": "supports",
+            "how_tested": "Read the cost-burden discussion and inspect the separate discussion of inflation in the rental-price section."
+          },
+          {
+            "source": "ipums",
+            "results": [
+              "units"
+            ],
+            "edge": "supports",
+            "how_tested": "Check whether the income variable’s default units already impose interyear inflation adjustment."
+          },
+          {
+            "source": "audit",
+            "results": [
+              "nominal",
+              "real"
+            ],
+            "edge": "supports",
+            "how_tested": "Compare the published pair against alternative nominal and constant-purchasing-power bracket specifications."
+          }
+        ]
+      },
+      {
+        "id": "HB-4",
+        "title": "Geographic uncertainty preserves the main finding",
+        "key_result": "Baseline geography checks: 9.0%–9.9%; real endpoint: 21.5% [[audit#geography]]",
+        "headline": "Changing the earlier public-geography rule moves its baseline between 9.0% and 9.9%; the real-bracket endpoint remains 21.5%. [[audit#geography]]",
+        "certainty": "moderate",
+        "downgraded_for": [
+          "indirectness"
+        ],
+        "rationale": "The report’s target counties are Essex, Middlesex, Norfolk, Plymouth and Suffolk. Public-use boundaries cross the target in the earlier file, so the main rates are an approximation, not an exact county replication. An exactly identifiable Essex-plus-Suffolk check also rises, from 6.6% to 17.7% at constant purchasing power. [[audit#exact-region]]",
+        "falsified_if": "A correct county-boundary crosswalk or independent exact-region calculation reverses the difference between nominal and real comparisons.",
+        "alternatives_ruled_out": [],
+        "evidence": [
+          {
+            "source": "audit",
+            "results": [
+              "geography",
+              "exact-region"
+            ],
+            "edge": "supports",
+            "how_tested": "Parse public PUMA county composition; compare majority, fractional, wholly-inside and touching selections, then check a fixed exactly identifiable county pair."
+          }
+        ]
+      },
+      {
+        "id": "HB-5",
+        "title": "Aggregate severe burden remains broadly stable",
+        "key_result": "All valid-percent renters: 25.3% to 24.8% severe burden [[audit#aggregate]]",
+        "headline": "Across renters with a valid Census burden percentage, severe burden is 25.3% in 2006 and 24.8% in 2024. [[audit#aggregate]]",
+        "certainty": "moderate",
+        "downgraded_for": [
+          "risk of bias"
+        ],
+        "rationale": "Conditional affordability still worsens: the lower real-income group rises from 47.6% to 54.6%, and the next higher band from 1.2% to 3.6%. The aggregate mixes changes in burden with changes in who rents; it does not follow the same households or establish displacement. [[audit#lower-income]] [[audit#higher-income]]",
+        "falsified_if": "The archived estimates cannot be reproduced, or comparable aggregate estimates show a large rise under the stated denominator.",
+        "alternatives_ruled_out": [],
+        "evidence": [
+          {
+            "source": "audit",
+            "results": [
+              "aggregate",
+              "lower-income",
+              "higher-income"
+            ],
+            "edge": "supports",
+            "how_tested": "Calculate broader real-income bands among positive-income renters; separately tabulate the aggregate among households with valid Census percentages. The two denominators are explicitly different."
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "limitations": [
+      "The earlier public geography cannot identify the report’s county target exactly. Specification alternatives change coverage and are not confidence bounds on an identified county estimate.",
+      "Original author code, PUMA selection, denominator and IPUMS adjustment settings were unavailable; a rounded match does not identify a unique workflow.",
+      "This is original analysis by the submitting agent; no independent researcher has reproduced it. The script, downloaded data bundle, hashes and all outputs are public in the linked repository.",
+      "ACS pretax cash income and reported gross rent do not capture all subsidies or noncash supports. No subsidy correction is attempted.",
+      "The income groups contain different residents over time. Household size, location, quality, migration and renter selection can change. The aggregate cannot identify displacement or household-level welfare changes.",
+      "The baseline-purchasing-power anchor answers the requested question; choosing current purchasing power targets a different group and yields a different size of increase."
+    ],
+    "open_questions": [
+      "Whether the authors will release the chart’s original extract settings and code.",
+      "How much of the change within real-income groups reflects rents, household composition, geography or other selection."
+    ],
+    "implications": [
+      "Label fixed dollar brackets explicitly when comparing income-specific housing burden over time.",
+      "Publish constant-purchasing-power brackets alongside nominal brackets; the remaining real-income deterioration still warrants attention.",
+      "Do not interpret the highlighted conditional comparison as the change for all renters, or infer deliberate cherry-picking from this audit."
+    ],
+    "competing_interests": "The page reports original calculations performed by the same Codex agent that wrote this review, at the site owner’s request. The data and code are public; no independent replication is claimed.",
+    "drafted_by": {
+      "model": "GPT-6 (Codex)",
+      "tool": "Codex desktop"
+    }
+  },
+  "sources": {
+    "audit": {
+      "title": "Independent ACS PUMS inflation audit: results and reproducibility files",
+      "short": "Downloaded-data audit",
+      "url": "https://raw.githubusercontent.com/arthgupta2003/boston-housing-inflation-audit-2026/2f814128b26f6e727e2d9fe02441f4d78f91c800/audit_results.txt",
+      "year": "2026",
+      "authors": "Codex housing audit",
+      "study_type": "Weighted repeated-cross-section household microdata analysis; not an independently replicated study.",
+      "sample": "Massachusetts ACS 1-year housing files for 2006 and 2024. Target is five counties; 669 baseline, 525 nominal-endpoint and 739 real-endpoint sampled households.",
+      "quality": {
+        "kind": "dataset",
+        "design": "observational",
+        "independent": false,
+        "note": "Original analysis by the agent writing this page. No independent researcher has reproduced it. All sensitivity specifications are retained."
+      },
+      "raw_url": "https://github.com/arthgupta2003/boston-housing-inflation-audit-2026/tree/2f814128b26f6e727e2d9fe02441f4d78f91c800",
+      "protocol": "No preregistration was written. The user specified a nominal and real-income comparison. I explored direct gross-rent ratios, Census GRPIP, within-year income factors, renter denominators and geography allocations, then retained every implemented variant. The geography approximation uses majority population membership, not a rate-based selection.",
+      "issues": [
+        "The five-county region is exact in the later file but crosses public-use geography boundaries in the earlier file; the original report code and extract settings were unavailable.",
+        "The audit is reproducible original work, not an independently peer-reviewed estimate. Replicate-weight uncertainty omits geography error, reporting error and CPI uncertainty."
+      ],
+      "results": [
+        {
+          "id": "nominal",
+          "value": "9.4% in 2006; 50.9% in 2024",
+          "meaning": "Nominal household income bracket in both years",
+          "quote": "Nominal brackets: severe burden was 9.4% in 2006 and 50.9% in 2024.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "real",
+          "value": "9.4% in 2006; 21.5% in 2024",
+          "meaning": "Bracket held at baseline purchasing power",
+          "quote": "Constant-2006 purchasing power: severe burden was 9.4% in 2006 and 21.5% in 2024.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "difference",
+          "value": "41.5; 12.1 percentage points; 70.8%",
+          "meaning": "Descriptive comparison of nominal and real-income increases, not a causal decomposition",
+          "quote": "The nominal increase is 41.5 percentage points; the constant-2006-income increase is 12.1 percentage points; 70.8% of the nominal increase disappears.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "bracket",
+          "value": "$35,000; $50,000; $54,460; $77,800; 2006; 2024",
+          "meaning": "Rounded income bracket thresholds; computation uses exact CPI thresholds",
+          "quote": "Real-income comparison: 2006 income $35,000 to <$50,000 versus 2024 income $54,460 to <$77,800, with unrounded thresholds used in computation.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "within-year",
+          "value": "9.2%; 2006; 20.9%; 2024",
+          "meaning": "Alternative Census within-year income adjustment, distinct from interyear inflation",
+          "quote": "Within-year income factors applied: severe burden is 9.2% in 2006 and 20.9% in 2024 at constant-2006 purchasing power.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "geography",
+          "value": "9.0% to 9.9%; 2006; 21.5%; 2024",
+          "meaning": "Geography specification sensitivity, not bounds on an exactly identified region",
+          "quote": "Geographic alternatives: 2006 baseline ranges from 9.0% to 9.9%; the comparable 2024 real-bracket rate is 21.5%.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "exact-region",
+          "value": "6.6%; 2006; 17.7%; 2024",
+          "meaning": "Exactly identifiable two-county check at constant purchasing power",
+          "quote": "Exactly identifiable Essex plus Suffolk: severe burden is 6.6% in 2006 and 17.7% in 2024 at constant-2006 purchasing power.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "aggregate",
+          "value": "25.3%; 2006; 24.8%; 2024; 30%; 50.4%; 49.2%",
+          "meaning": "All renters with valid GRPIP, a different denominator from no-cash-rent-inclusive main analysis",
+          "quote": "Valid-GRPIP renters: severe burden is 25.3% in 2006 and 24.8% in 2024; burden above 30% is 50.4% and 49.2%, respectively.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "lower-income",
+          "value": "$35,000; 2006; 47.6%; 54.6%; 2024",
+          "meaning": "Positive-income renters below real lower threshold",
+          "quote": "Real-income severe burden below $35,000 in 2006 purchasing power: 47.6% in 2006 and 54.6% in 2024.",
+          "page": 1,
+          "location": "Rounded results for display"
+        },
+        {
+          "id": "higher-income",
+          "value": "$50,000; $75,000; 2006; 1.2%; 3.6%; 2024",
+          "meaning": "Positive-income renters in next real income band",
+          "quote": "Real-income severe burden from $50,000 to <$75,000 in 2006 purchasing power: 1.2% in 2006 and 3.6% in 2024.",
+          "page": 1,
+          "location": "Rounded results for display"
+        }
+      ]
+    },
+    "report": {
+      "title": "2026 Greater Boston Housing Report Card",
+      "short": "Housing Report Card",
+      "url": "https://www.tbf.org/-/media/tbf/reports-and-covers/2026/gbhrc-2026-report.pdf",
+      "year": "2026",
+      "authors": "Boston Foundation and Boston Indicators; special topic by Harvard JCHS",
+      "cited_as_subject": true,
+      "quality": {
+        "kind": "report",
+        "design": "observational",
+        "independent": true
+      },
+      "study_type": "Regional indicator report using ACS microdata via IPUMS and other housing sources.",
+      "results": [
+        {
+          "id": "published",
+          "value": "9 percent in 2006 to 51 percent in 2024",
+          "meaning": "Published severe-burden endpoints for the middle-low nominal income band",
+          "quote": "9 percent in 2006 to 51 percent in 2024.",
+          "page": 48,
+          "location": "Severe renter cost-burden chart discussion"
+        }
+      ]
+    },
+    "ipums": {
+      "title": "IPUMS USA: household income variable documentation",
+      "short": "IPUMS income documentation",
+      "url": "https://usa.ipums.org/usa-action/variables/HHINCOME",
+      "year": "2026",
+      "quality": {
+        "kind": "report",
+        "design": "review",
+        "independent": true
+      },
+      "study_type": "Documentation of income units and comparability.",
+      "results": [
+        {
+          "id": "units",
+          "value": "contemporary dollars",
+          "meaning": "Default income units do not imply automatic interyear inflation adjustment",
+          "quote": "Amounts are expressed in contemporary dollars, and users studying change over time must adjust for inflation",
+          "page": 1,
+          "location": "Description"
+        }
+      ]
+    },
+    "cpi06": {
+      "title": "BLS CPI-U annual average, 2006",
+      "short": "BLS baseline CPI",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2006&endyear=2006&annualaverage=true",
+      "year": "2006",
+      "quality": {
+        "kind": "report",
+        "design": "observational",
+        "independent": true
+      },
+      "study_type": "Official all-items national price index.",
+      "results": [
+        {
+          "id": "annual",
+          "value": "2006; 201.6",
+          "meaning": "Annual-average national CPI-U",
+          "quote": "CUUR0000SA0\n2006\nM13\nAnnual\n201.6",
+          "page": 1,
+          "location": "Series CUUR0000SA0, annual period M13"
+        }
+      ]
+    },
+    "cpi24": {
+      "title": "BLS CPI-U annual average, 2024",
+      "short": "BLS endpoint CPI",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2024&endyear=2024&annualaverage=true",
+      "year": "2024",
+      "quality": {
+        "kind": "report",
+        "design": "observational",
+        "independent": true
+      },
+      "study_type": "Official all-items national price index.",
+      "results": [
+        {
+          "id": "annual",
+          "value": "2024; 313.689",
+          "meaning": "Annual-average national CPI-U",
+          "quote": "CUUR0000SA0\n2024\nM13\nAnnual\n313.689",
+          "page": 1,
+          "location": "Series CUUR0000SA0, annual period M13"
+        }
+      ]
+    }
+  }
+}
