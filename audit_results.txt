@@ -30,3 +30,18 @@ Geography check touching, 2006, constant-2006-income bracket: severe 8.9820%.
 Geography check touching, 2024, constant-2006-income bracket: severe 21.5413%.
 Geography check essex_suffolk, 2006, constant-2006-income bracket: severe 6.6274%.
 Geography check essex_suffolk, 2024, constant-2006-income bracket: severe 17.6829%.
+
+Rounded results for display (unrounded estimates above and in comparison.csv):
+Nominal brackets: severe burden was 9.4% in 2006 and 50.9% in 2024.
+Constant-2006 purchasing power: severe burden was 9.4% in 2006 and 21.5% in 2024.
+The nominal increase is 41.5 percentage points; the constant-2006-income increase is 12.1 percentage points; 70.8% of the nominal increase disappears.
+Real-income comparison: 2006 income $35,000 to <$50,000 versus 2024 income $54,460 to <$77,800, with unrounded thresholds used in computation.
+Within-year income factors applied: severe burden is 9.2% in 2006 and 20.9% in 2024 at constant-2006 purchasing power.
+Using GRPIP>50: nominal rates are 9.1% in 2006 and 50.8% in 2024; the real-bracket 2024 rate is 20.9%.
+Geographic alternatives: 2006 baseline ranges from 9.0% to 9.9%; the comparable 2024 real-bracket rate is 21.5%.
+Exactly identifiable Essex plus Suffolk: severe burden is 6.6% in 2006 and 17.7% in 2024 at constant-2006 purchasing power.
+Valid-GRPIP renters: severe burden is 25.3% in 2006 and 24.8% in 2024; burden above 30% is 50.4% and 49.2%, respectively.
+Real-income severe burden below $35,000 in 2006 purchasing power: 47.6% in 2006 and 54.6% in 2024.
+Real-income severe burden from $50,000 to <$75,000 in 2006 purchasing power: 1.2% in 2006 and 3.6% in 2024.
+The target is Essex, Middlesex, Norfolk, Plymouth and Suffolk counties, Massachusetts. The union is exact for 2024 PUMAs; the 2006 majority-PUMA approximation includes some outside towns and omits some inside towns.
+Source materials and all code, input downloads and sensitivity outputs are available in the linked reproducibility repository and archive.
